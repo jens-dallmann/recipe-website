@@ -1,0 +1,4 @@
+.vagrant
+packer_cache
+output-virtualbox-iso
+ubuntu_server.box
