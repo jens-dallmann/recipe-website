@@ -1,17 +1,14 @@
 #!/bin/bash
-yum update
-yum -y install wget
+sudo apt-get install -y apache2 sshpass
+sudo a2enmod rewrite
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+service apache2 start
 
-allInstalledService=$( { service --status-all; } 2>&1 )
-isJenkinsInstalled=` echo "$allInstalledService" | grep jenkins | sed -e 's/^ *//' -e 's/ *$//'`
+sshpass -p 'vagrant' ssh -o StrictHostKeyChecking=no vagrant@deception uptime
+sshpass -p 'vagrant' scp -r deception:/home/deception/git/chef-tests/apache-conf/ .
 
-if [ -z "$isJenkinsInstalled" ]; then
-	echo "Jenkins is not installed... Will install now...."
-	wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
-	rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
-	yum -y install jenkins
-	echo "Jenkins should be installed now... Will start it"
-	service jenkins start
-else
-	echo "JENKINS IS INSTALLED... $isJenkinsInstalled"
-fi
+sudo cp apache-conf/virtualbox.conf /etc/apache2/sites-available
+sudo ln -s /etc/apache2/sites-available/virtualbox.conf /etc/apache2/sites-enabled/virtualbox.conf
+
+service apache restart
