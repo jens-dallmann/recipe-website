@@ -3,3 +3,8 @@ packer_cache
 output-virtualbox-iso
 ubuntu_server.box
 template/VBoxGuestAdditions_4.3.18.iso
+*/.idea/*
+*.iml
+*/.gradle/*
+*/build/*
+tmp

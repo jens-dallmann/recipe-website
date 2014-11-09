@@ -1,0 +1,21 @@
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'eclipse-wtp'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile 'javax.servlet:servlet-api:2.5'
+    compile 'org.springframework:spring-webmvc:4.0.6.RELEASE'
+    runtime 'javax.servlet:jstl:1.1.2'
+}
+
+task "create-dirs" << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
+/* Change context path (base url). otherwise defaults to name of project */
+jettyRun.contextPath = ''
+jettyRun.httpPort=8089

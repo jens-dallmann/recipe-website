@@ -15,6 +15,20 @@ sudo apt-get -y install linux-headers-generic build-essential dkms nfs-common
 # Install necessary dependencies
 sudo apt-get -y install curl wget git tmux xvfb vim gdebi
 
+#Download and install java
+wget 192.168.178.28/jdk-8u25-linux-x64.tar.gz
+echo "--------------------------- INSTALL JDK ---------------------"
+tar -zxvf jdk-8u25-linux-x64.tar.gz
+mv jdk1.8.0_25 /opt
+echo 'create .bashrc and add env. variables export'
+echo 'JAVA_HOME=/opt/jdk1.8.0_25' >> /etc/environment
+echo 'export JAVA_HOME=$JAVA_HOME' >> /etc/environment
+echo 'PATH=$PATH:$JAVA_HOME/bin' >> /etc/environment
+echo 'export PATH=$PATH' >> /etc/environment
+export JAVA_HOME=/opt/jdk1.8.0_25
+export PATH=$PATH:$JAVA_HOME/bin
+echo "-------------------------- END INSTALL JDK -----------------"
+
 # Install services
 sudo apt-get -y install jenkins
 
