@@ -30,6 +30,10 @@ dependencies {
     tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
         exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
     }
+    compile 'org.slf4j:slf4j-api:1.7.7'
+    runtime 'ch.qos.logback:logback-core:1.1.2'
+    runtime 'ch.qos.logback:logback-classic:1.1.2'
+
 }
 
 task "create-dirs" << {
