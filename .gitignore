@@ -11,4 +11,5 @@ template/VBoxGuestAdditions_4.3.18.iso
 */build/*
 tmp
 toInstall
-*/gradlew.bat
+*.class
+

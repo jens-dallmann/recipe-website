@@ -1,0 +1,46 @@
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'com.bmuschko.tomcat'
+apply plugin: 'com.bmuschko.tomcat-base'
+
+repositories {
+    mavenCentral()
+}
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.0'
+    }
+}
+tasks.withType(JavaCompile) {
+    sourceCompatibility = "1.7"
+    targetCompatibility = "1.7"
+}
+
+dependencies {
+    providedCompile 'javax.servlet:servlet-api:2.5'
+    compile 'org.springframework:spring-webmvc:4.0.6.RELEASE'
+    runtime 'javax.servlet:jstl:1.1.2'
+    def tomcatVersion = '7.0.11'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
+    tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
+        exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
+    }
+    compile 'org.slf4j:slf4j-api:1.7.7'
+    runtime 'ch.qos.logback:logback-core:1.1.2'
+    runtime 'ch.qos.logback:logback-classic:1.1.2'
+
+}
+
+task "create-dirs" << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
+
+tomcat {
+    httpPort = 8090
+}
