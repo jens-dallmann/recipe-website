@@ -69,8 +69,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # end
 
   config.vm.provision "file", source: "~/git/chef-tests/apache-conf", destination: "apache-conf/"
-  config.vm.provision "file", source: "~/git/chef-tests/server/build/libs/", destination: "/home/vagrant/"
   config.vm.provision "file", source: "~/git/chef-tests/toInstall", destination: "/home/vagrant/"
+  config.vm.provision "file", source: "~/git/chef-tests/recipe-server/build/libs/", destination: "/home/vagrant/recipe-server/"
   config.vm.provision "file", source: "~/git/chef-tests/recipe-editor/build/libs/", destination: "/home/vagrant/recipe-editor/" 
   config.vm.provision "file", source: "~/git/chef-tests/tomcat", destination: "tomcat/"
   config.vm.provision :shell, path: "bootstrap.sh"

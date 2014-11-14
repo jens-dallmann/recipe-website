@@ -4,8 +4,8 @@ pushd recipe-editor
 gradle war
 popd
 
-pushd server
-gradle assemble
+pushd recipe-server
+gradle war
 popd
 
 vagrant destroy -f
