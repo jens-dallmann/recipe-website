@@ -7,6 +7,7 @@ template/VBoxGuestAdditions_4.3.18.iso
 .idea
 *.iml
 */.gradle/*
+.gradle
 */build/*
 tmp
 toInstall
