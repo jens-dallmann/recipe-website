@@ -17,8 +17,8 @@ include 'services:webservice'
 */
 include 'dev'
 include 'template'
-include 'dev/apache-conf'
-include 'dev/recipe-editor'
-include 'dev/recipe-server'
+include 'dev:apache-conf'
+include 'dev:recipe-editor'
+include 'dev:recipe-server'
 
 rootProject.name = 'recipe-site'
