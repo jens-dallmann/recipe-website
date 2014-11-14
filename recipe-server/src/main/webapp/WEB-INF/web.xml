@@ -17,20 +17,6 @@
             <param-value>de.jd</param-value>
         </init-param>
     </servlet>
-    <bean id="contentNegotiationManager"
-          class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-        <property name="parameterName" value="mediaType" />
-        <property name="ignoreAcceptHeader" value="true"/>
-        <property name="useJaf" value="false"/>
-        <property name="defaultContentType" value="application/json" />
-
-        <property name="mediaTypes">
-            <map>
-                <entry key="json" value="application/json" />
-                <entry key="xml" value="application/xml" />
-            </map>
-        </property>
-    </bean>
     <servlet>
         <servlet-name>ViewStatusMessages</servlet-name>
         <servlet-class>ch.qos.logback.classic.ViewStatusMessagesServlet</servlet-class>
