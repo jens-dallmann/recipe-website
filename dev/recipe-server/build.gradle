@@ -44,4 +44,5 @@ task "create-dirs" << {
 
 tomcat {
     httpPort = 9000
+    ajpPort = 8010
 }

@@ -15,8 +15,7 @@ public class ViewConfiguration extends WebMvcConfigurerAdapter {
         configurer.parameterName("mediaType")
                 .defaultContentType(MediaType.APPLICATION_JSON)
                 .useJaf(false).ignoreAcceptHeader(true)
-                .mediaType("json",MediaType.APPLICATION_JSON)
-                .mediaType("xml",MediaType.APPLICATION_XML);
+                .mediaType(".json",MediaType.APPLICATION_JSON)
+                .mediaType(".xml",MediaType.APPLICATION_XML);
     }
-
 }

@@ -33,6 +33,8 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.7'
     runtime 'ch.qos.logback:logback-core:1.1.2'
     runtime 'ch.qos.logback:logback-classic:1.1.2'
+    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+    compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
 
 }
 
@@ -43,4 +45,6 @@ task "create-dirs" << {
 
 tomcat {
     httpPort = 8090
+    ajpPort = 8011
+    stopPort = 8012
 }
