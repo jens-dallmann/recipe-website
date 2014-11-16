@@ -14,7 +14,7 @@
         </init-param>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>de.jd</param-value>
+            <param-value>de.jd.recipeEditor</param-value>
         </init-param>
     </servlet>
     <servlet>
@@ -25,16 +25,10 @@
         <servlet-name>ViewStatusMessages</servlet-name>
         <url-pattern>/lbClassicStatus</url-pattern>
     </servlet-mapping>
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:*-context.xml</param-value>
-    </context-param>
 
     <servlet-mapping>
         <servlet-name>recipe-editor</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
 </web-app>

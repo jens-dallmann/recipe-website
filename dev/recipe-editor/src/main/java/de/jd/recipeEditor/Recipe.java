@@ -1,8 +1,5 @@
 package de.jd.recipeEditor;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Recipe {
 
     private String id;

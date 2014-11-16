@@ -22,8 +22,9 @@
     </appender>
 
     <!-- Configure so that it outputs to both console and log file -->
-    <root level="INFO">
+    <root level="DEBUG">
         <appender-ref ref="FILE" />
         <appender-ref ref="STDOUT" />
     </root>
+    <Logger name="org.springframework" level="trace"/>
 </configuration>

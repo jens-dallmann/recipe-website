@@ -1,5 +1,4 @@
 apply plugin: 'war'
-apply plugin: 'eclipse-wtp'
 apply plugin: 'com.bmuschko.tomcat'
 apply plugin: 'com.bmuschko.tomcat-base'
 
@@ -22,7 +21,7 @@ tasks.withType(JavaCompile) {
 
 dependencies {
     providedCompile 'javax.servlet:servlet-api:2.5'
-    compile 'org.springframework:spring-webmvc:4.0.6.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.1.2.RELEASE'
     runtime 'javax.servlet:jstl:1.1.2'
     def tomcatVersion = '7.0.11'
     tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
@@ -33,9 +32,10 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.7'
     runtime 'ch.qos.logback:logback-core:1.1.2'
     runtime 'ch.qos.logback:logback-classic:1.1.2'
-    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
-    compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
-
+    compile 'com.fasterxml.jackson.core:jackson-core:2.4.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
+    compile 'javax.servlet:servlet-api:2.5'
+    compile 'javax.servlet:jstl:1.2'
 }
 
 task "create-dirs" << {
@@ -47,4 +47,31 @@ tomcat {
     httpPort = 8090
     ajpPort = 8011
     stopPort = 8012
+}
+
+task tomcatDebug {
+    // Create a new task tomcatDebug, add a description and add it to the same group as tomcatRun
+    description "Starting Tomcat with debugger enabled on port 5008."
+    group "web application"
+} << {
+
+    org.gradle.tooling.ProjectConnection conn = org.gradle.tooling.GradleConnector.newConnector()
+            .forProjectDirectory(new File("."))
+            .connect();
+
+    try {
+
+        org.gradle.tooling.model.build.BuildEnvironment env = conn.getModel(org.gradle.tooling.model.build.BuildEnvironment.class)
+        org.gradle.tooling.BuildLauncher build = conn.newBuild();
+
+        build.forTasks("tomcatRun")
+        // Enable debug via jvm arguments and append JVM arguments of the currently running vm (except -D).
+        build.setJvmArguments("-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8001", *env.java.jvmArguments)
+
+        // Run tomcatRun in the new JVM with debug parameters
+        build.run()
+
+    } finally {
+        conn.close();
+    }
 }

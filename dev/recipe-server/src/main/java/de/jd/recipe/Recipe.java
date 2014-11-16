@@ -1,26 +1,45 @@
 package de.jd.recipe;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Recipe implements Serializable {
+    @JsonIgnore
+    private Map<String, Object> properties;
 
-    private int id;
+    public Recipe() {
+        properties = new HashMap<String, Object>();
+    }
 
-    private String title;
+    public Recipe(Map<String, Object> properties) {
+        this.properties = properties;
+    }
 
     public int getId() {
-        return id;
+        return (Integer) properties.get("id");
     }
 
     public void setId(int id) {
-        this.id = id;
+        properties.put("id", id);
     }
 
     public String getTitle() {
-        return title;
+        return (String) properties.get("title");
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        properties.put("title", title);
+    }
+
+    public void setProperties(Map<String, Object> properties) {
+        this.properties = properties;
+    }
+
+    public Map<String, Object> getProperties() {
+        return properties;
     }
 }

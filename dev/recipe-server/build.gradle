@@ -33,8 +33,14 @@ dependencies {
     runtime 'ch.qos.logback:logback-core:1.1.2'
     compile 'ch.qos.logback:logback-classic:1.1.2'
     compile 'org.springframework:spring-web:4.1.2.RELEASE'
-    compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
-    compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+    /*compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+    runtime 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+    */compile 'org.mongodb:mongo-java-driver:2.12.4'
+    compile 'javax.xml.bind:jaxb-api:2.2.6'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.4.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
+
+
 }
 
 task "create-dirs" << {
@@ -45,4 +51,30 @@ task "create-dirs" << {
 tomcat {
     httpPort = 9000
     ajpPort = 8010
+}
+task tomcatDebug {
+    // Create a new task tomcatDebug, add a description and add it to the same group as tomcatRun
+    description "Starting Tomcat with debugger enabled on port 5008."
+    group "web application"
+} << {
+
+    org.gradle.tooling.ProjectConnection conn = org.gradle.tooling.GradleConnector.newConnector()
+            .forProjectDirectory(new File("."))
+            .connect();
+
+    try {
+
+        org.gradle.tooling.model.build.BuildEnvironment env = conn.getModel(org.gradle.tooling.model.build.BuildEnvironment.class)
+        org.gradle.tooling.BuildLauncher build = conn.newBuild();
+
+        build.forTasks("tomcatRun")
+        // Enable debug via jvm arguments and append JVM arguments of the currently running vm (except -D).
+        build.setJvmArguments("-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000", *env.java.jvmArguments)
+
+        // Run tomcatRun in the new JVM with debug parameters
+        build.run()
+
+    } finally {
+        conn.close();
+    }
 }
