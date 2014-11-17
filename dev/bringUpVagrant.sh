@@ -1,7 +1,7 @@
 #!/bin/bash
 
 pushd recipe-editor
-gradle war
+gradle war -Denv=prod
 popd
 
 pushd recipe-server

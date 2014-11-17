@@ -2,6 +2,14 @@ apply plugin: 'war'
 apply plugin: 'com.bmuschko.tomcat'
 apply plugin: 'com.bmuschko.tomcat-base'
 
+import org.apache.tools.ant.filters.ReplaceTokens
+
+if (System.getProperty('env') != null && System.getProperty('env') == 'prod') {
+    apply from: 'gradle/production.gradle'
+}  else {
+    apply from: 'gradle/development.gradle'
+}
+
 repositories {
     mavenCentral()
 }
@@ -48,7 +56,19 @@ tomcat {
     ajpPort = 8011
     stopPort = 8012
 }
-
+processResources {
+    inputs.properties( System.getProperties() )
+    from(sourceSets.main.resources.srcDirs)
+    {
+       include '**/*.properties'
+        filter(ReplaceTokens,
+                tokens: ['$':'={'], beginToken : '=', endToken : '{')
+        filter(ReplaceTokens,
+                tokens: [System.getProperties()], beginToken : '{', endToken : '}')
+    }
+    from(sourceSets.main.resources.srcDirs)
+            { exclude '**/*.properties' }
+}
 task tomcatDebug {
     // Create a new task tomcatDebug, add a description and add it to the same group as tomcatRun
     description "Starting Tomcat with debugger enabled on port 5008."
