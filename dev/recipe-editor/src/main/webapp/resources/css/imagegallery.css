@@ -1,0 +1,16 @@
+#imagegallery-image {
+    width: 130px;
+    heigth: 130px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+#imagegallery > li {
+    display: inline-block;
+}
+
+#imagegallery    {
+    list-style: none;
+}
