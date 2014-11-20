@@ -1,14 +1,18 @@
 #imagegallery-image {
-    width: 130px;
-    heigth: 130px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    width: 160px;
+    heigth: 160px;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
 }
 
 #imagegallery > li {
     display: inline-block;
+}
+
+#imagegallery > li > img {
+    padding: .2em 1em;
 }
 
 #imagegallery    {

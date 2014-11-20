@@ -3,6 +3,10 @@
 <head>
     <title>Getting Started: Handing Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script>
+
+    <link rel="stylesheet" type="text/css" href="/recipe-editor/resources/css/imagegallery.css">
+    <script src="/recipe-editor/resources/js/jd.de.imagegallery.js"></script>
 </head>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -14,6 +18,11 @@
             <tr>
                 <td><form:label path="id" >Id:</form:label></td>
                 <td><form:input path="id"></form:input></td>
+            </tr>
+            <tr>
+                <td>Bild</td>
+                <td><input type="file" id="gallery-upload"></td>
+                <td><ul id="imagegallery"> </ul></td>
             </tr>
             <tr>
                 <td><form:label path="title">Title:</form:label></td>

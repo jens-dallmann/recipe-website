@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script>
-</script>
-<link rel="stylesheet" type="text/css" href="/recipe-editor/resources/css/imagegallery.css">
-<script>
 $("document").ready(function(){
         var imageUpload = function() {
         //file selected from the user
@@ -42,13 +35,3 @@ $("document").ready(function(){
 });
 
   //previewFile();  //calls the function named previewFile()
-  </script>
-</head>
-
-<body>
-<input type="file" id="gallery-upload"><br>
-<ul id="imagegallery">
-</ul>
-<h1 id="h01">asdfasdfaerwaer</h1>
-</body>
-</html>
