@@ -1,10 +1,23 @@
 package de.jd.recipeEditor;
 
+import java.util.List;
+
 public class Recipe {
 
     private String id;
 
     private String title;
+
+    private List<String> images;
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
 
     public String getId() {
         return id;

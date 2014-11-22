@@ -1,10 +1,10 @@
 package de.jd.recipe;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Recipe implements Serializable {
@@ -25,6 +25,14 @@ public class Recipe implements Serializable {
 
     public void setId(int id) {
         properties.put("id", id);
+    }
+
+    public void setImages(List<String> images) {
+        properties.put("images", images);
+    }
+
+    public List<String> getImages() {
+        return (List<String>) properties.get("images");
     }
 
     public String getTitle() {
