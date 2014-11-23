@@ -33,6 +33,7 @@ public class RecipeController {
         Recipe recipe = restTemplate.getForObject(recipeUrl, Recipe.class);
 
         m.addAttribute("title", recipe.getTitle());
+        m.addAttribute("images", recipe.getImages());
         return "recipe";
     }
 

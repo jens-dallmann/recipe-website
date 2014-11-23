@@ -18,3 +18,28 @@
 #imagegallery    {
     list-style: none;
 }
+#recipe-image-gallery-item {
+    float:left;
+    position:relative;
+    width:700px;
+    height:400px;
+    display:none;
+}
+#recipe-image-gallery-item #overlay {
+    position:absolute;
+    left:0px;
+    width:100%;
+    /* styling bellow */
+    background-color:white;
+    font-family: 'tahoma';
+    font-size:20px;
+    color:black;
+    opacity:0.6;
+    filter:alpha(opacity=60); /* IE transparency */
+}
+
+#recipe-image-gallery-item #overlay .title {
+    padding:30px;
+    margin:0px;
+    font-size:30px;
+}

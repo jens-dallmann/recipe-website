@@ -35,6 +35,7 @@ public class RecipeDao {
         BasicDBObject queryObject = new BasicDBObject(queryRecipe.getProperties());
         DBObject storedRecipe = recipeCollection.findOne(queryObject);
         Map<String, Object> map = (Map<String, Object>) storedRecipe.toMap();
+        log.debug("Found: "+map);
         return new Recipe(map);
     }
 
