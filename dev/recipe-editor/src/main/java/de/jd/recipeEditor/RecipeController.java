@@ -57,6 +57,18 @@ public class RecipeController {
         return modelAndView;
     }
 
+    @RequestMapping("/sidebar")
+    public ModelAndView getSidebar() {
+        String allRecipesUrl = recipeServerUrls.getAllRecipesUrl();
+
+        LOG.debug("Retrieve all recipes by using url: \"{}\"", allRecipesUrl);
+        List<Recipe> recipe = restTemplate.getForObject(allRecipesUrl, List.class);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("recipes", recipe);
+        modelAndView.setViewName("sidebar");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/recipe/add", method = RequestMethod.GET)
     public ModelAndView addRecipeForm() {
         ModelAndView modelAndView = new ModelAndView("addRecipe", "recipe-entity", new RecipeImpl());
