@@ -1,3 +1,9 @@
+.color-primary-0 { color: #709C34 }	/* Main Primary color */
+.color-primary-1 { color: #C9EA9C }
+.color-primary-2 { color: #9AC361 }
+.color-primary-3 { color: #4C7513 }
+.color-primary-4 { color: #2D4E00 }
+
 #imagegallery-image {
     width: 160px;
     heigth: 160px;
@@ -30,7 +36,7 @@
     left:0px;
     width:100%;
     /* styling bellow */
-    background-color:white;
+    background-color:#C9EA9C;
     font-family: 'tahoma';
     font-size:20px;
     color:black;
