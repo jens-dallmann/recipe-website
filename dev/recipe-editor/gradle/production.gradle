@@ -1,2 +1,0 @@
-logger.info('A message which is logged at QUIET level')
-System.setProperty('recipe.service.base.url', "http://localhost:8090/recipe-server");

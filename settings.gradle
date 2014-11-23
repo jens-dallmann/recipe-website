@@ -20,5 +20,6 @@ include 'template'
 include 'dev:apache-conf'
 include 'dev:recipe-editor'
 include 'dev:recipe-server'
+include 'dev:recipe-server-shared'
 
 rootProject.name = 'recipe-site'
