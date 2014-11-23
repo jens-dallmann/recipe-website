@@ -1,5 +1,8 @@
 package de.jd.recipeEditor;
 
+import de.jd.entities.Recipe;
+import de.jd.entities.RecipeImpl;
+import de.jd.status.OneRecipeStatusResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +29,20 @@ public class RecipeController {
     public RecipeServerUrls recipeServerUrls;
 
     @RequestMapping("/recipe/{id}")
-    public String getRecipe(Model m, @PathVariable int id) {
+    public String getRecipe(Model m, @PathVariable String id) {
         String recipeUrl = recipeServerUrls.getRecipeUrl(id);
 
         LOG.debug("Retrieve Recipe with id \"{}\" by using url: \"{}\"", id, recipeUrl);
-        Recipe recipe = restTemplate.getForObject(recipeUrl, Recipe.class);
-
-        m.addAttribute("title", recipe.getTitle());
-        m.addAttribute("images", recipe.getImages());
-        return "recipe";
+        OneRecipeStatusResponse statusResponse = restTemplate.getForObject(recipeUrl, OneRecipeStatusResponse.class);
+        if(statusResponse.getStatus().isSuccessfull()) {
+            m.addAttribute("title", statusResponse.getRecipe().getTitle());
+            m.addAttribute("images", statusResponse.getRecipe().getImages());
+            return "recipe";
+        }
+        else {
+            m.addAttribute("errorMessage",statusResponse.getStatus().getErrorMsg());
+            return "error";
+        }
     }
 
     @RequestMapping("/recipe")
@@ -51,7 +59,7 @@ public class RecipeController {
 
     @RequestMapping(value = "/recipe/add", method = RequestMethod.GET)
     public ModelAndView addRecipeForm() {
-        ModelAndView modelAndView = new ModelAndView("addRecipe", "recipe-entity", new Recipe());
+        ModelAndView modelAndView = new ModelAndView("addRecipe", "recipe-entity", new RecipeImpl());
         return modelAndView;
     }
 
@@ -61,7 +69,7 @@ public class RecipeController {
         String allRecipesUrl = recipeServerUrls.getAllRecipesUrl();
 
         LOG.debug("Posting Recipe (\"id\":{},\"title\":{}) to url: \"{}\"", recipe.getId(), recipe.getTitle(), postRecipeUrl);
-        restTemplate.postForEntity(postRecipeUrl, recipe, Recipe.class);
+        restTemplate.postForEntity(postRecipeUrl, recipe, RecipeImpl.class);
         LOG.debug("Retrieve all recipes by using url: \"{}\"", allRecipesUrl);
         List all = restTemplate.getForObject(allRecipesUrl, List.class);
 

@@ -24,13 +24,14 @@
 #imagegallery    {
     list-style: none;
 }
+
 #recipe-image-gallery-item {
     float:left;
     position:relative;
     width:700px;
     height:400px;
-    display:none;
 }
+
 #recipe-image-gallery-item #overlay {
     position:absolute;
     left:0px;

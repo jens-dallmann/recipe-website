@@ -1,5 +1,7 @@
 package de.jd.recipe;
 
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,10 +41,17 @@ public class ViewConfiguration extends WebMvcConfigurerAdapter {
         return mongoClient;
     }
 
+    @Bean(name="recipe-collection")
+    public DBCollection openRecipeCollection(MongoClient mongoClient) {
+        DB myDB = mongoClient.getDB("recipe-server");
+        return myDB.getCollection("recipe");
+    }
+
     @Bean
     public RecipeDao recipeDao(MongoClient mongoClient) {
+        DBCollection recipeCollection = openRecipeCollection(mongoClient);
         RecipeDao recipeDao = new RecipeDao();
-        recipeDao.setMongoClient(mongoClient);
+        recipeDao.setRecipeCollection(recipeCollection);
         return recipeDao;
     }
 }

@@ -20,7 +20,7 @@ public class RecipeServerUrls {
         return getRecipeServerBaseUrl() + "/recipe/";
     }
 
-    public String getRecipeUrl(int id) {
+    public String getRecipeUrl(String id) {
         String template = getRecipeServerBaseUrl() + "/recipe/%s";
         String expandedUrl = String.format(template, id);
 

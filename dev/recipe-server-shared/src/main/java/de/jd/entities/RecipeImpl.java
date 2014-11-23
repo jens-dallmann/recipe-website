@@ -1,29 +1,28 @@
-package de.jd.recipe;
+package de.jd.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Recipe implements Serializable {
+public class RecipeImpl implements Recipe {
     @JsonIgnore
     private Map<String, Object> properties;
 
-    public Recipe() {
+    public RecipeImpl() {
         properties = new HashMap<String, Object>();
     }
 
-    public Recipe(Map<String, Object> properties) {
+    public RecipeImpl(Map<String, Object> properties) {
         this.properties = properties;
     }
 
-    public int getId() {
-        return (Integer) properties.get("id");
+    public String getId() {
+        return (String) properties.get("id");
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         properties.put("id", id);
     }
 
