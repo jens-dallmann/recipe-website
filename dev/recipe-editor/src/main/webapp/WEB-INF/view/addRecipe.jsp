@@ -16,17 +16,13 @@
     <form:form method="POST" action="add" commandName="recipe-entity">
         <table>
             <tr>
-                <td>Id:</td>
-                <td><input type="text" id="recipeId"></form></td>
+                <td>Title:</td>
+                <td><input type="text" id="recipeTitle"/></td>
             </tr>
             <tr>
                 <td>Bild</td>
                 <td><input type="file" id="gallery-upload"></td>
                 <td><ul id="imagegallery"> </ul></td>
-            </tr>
-            <tr>
-                <td>Title:</td>
-                <td><input type="text" id="recipeTitle"/></td>
             </tr>
             <tr>
                 <td><input id="submit" type="button" name="submit" value="Submit"></td>
