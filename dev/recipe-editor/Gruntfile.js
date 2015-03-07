@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        distDir: 'src/main/webapp/',
+        distDir: 'target/resources',
         distDirCss: '<%= distDir %>/css',
         distDirJs: '<%= distDir %>/js',
         distDirImg: '<%= distDir %>/images',
