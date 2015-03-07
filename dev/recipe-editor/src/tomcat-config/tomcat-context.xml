@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- this file enables Tomcat to reload changed resources (= templates) from the given directories while running. -->
+<Context logEffectiveWebXml="false" useHttpOnly="false" reloadable="true">
+
+  <Resources className="org.apache.naming.resources.VirtualDirContext"
+             extraResourcePaths="/=${project.basedir}/target/resources,/=${project.basedir}/src/main/webapp" />
+
+</Context>
