@@ -5,10 +5,14 @@
     <title>Recipe</title>
   </head>
   <body>
-  <c:forEach items="${recipes}" var="recipe">
-    <div class="recipe-link-container" data-imageId="${recipe.id}" onclick="onSidebarLinkClicked(this);">
-       <div class="recipe-link-container-link-title"> ${recipe.title}</div>
-    </div>
-  </c:forEach>
+  <div class="dropdown">
+    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">Recipes</button>
+    <ul class="dropdown-menu pull-right" role="menu">
+
+    <c:forEach items="${recipes}" var="recipe">
+    <li role="presentation" data-imageid="${recipe.id}" onclick="onSidebarLinkClicked(this);"><p role="menuitem">${recipe.title}</p></li>
+    </c:forEach>
+  </ul>
+  </div>
 </body>
 </html>

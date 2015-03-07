@@ -89,4 +89,11 @@ public class RecipeController {
         modelAndView.addObject("recipes", all);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/recipe/header", method = RequestMethod.GET)
+    public ModelAndView header() {
+        LOG.debug("Header requested");
+        ModelAndView modelAndView = new ModelAndView("header");
+        return modelAndView;
+    }
 }

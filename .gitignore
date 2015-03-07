@@ -12,4 +12,4 @@ template/VBoxGuestAdditions_4.3.18.iso
 tmp
 toInstall
 *.class
-
+*/node_modules/*
