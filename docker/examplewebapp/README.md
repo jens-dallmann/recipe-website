@@ -1,7 +1,7 @@
 examplewebapp container
 =================================
 
-Provides some configurations for the example webapp.
+Provides some configurations for the example webapp. Based on [ssh enabled container](../ssh/README.md)
 
 Installs programs
 ----------------------
