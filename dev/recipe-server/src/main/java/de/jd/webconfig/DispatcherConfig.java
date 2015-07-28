@@ -24,10 +24,4 @@ public class DispatcherConfig extends WebMvcConfigurerAdapter {
                 .mediaType(".xml", MediaType.APPLICATION_XML)
                 .favorPathExtension(false);
     }
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addStatusController("/test", HttpStatus.OK);
-        super.addViewControllers(registry);
-    }
 }
