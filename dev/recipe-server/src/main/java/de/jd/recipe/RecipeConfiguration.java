@@ -39,11 +39,4 @@ public class RecipeConfiguration {
         recipeDao.setRecipeCollection(recipeCollection);
         return recipeDao;
     }
-
-    @Bean
-    public RecipeService recipeController(RecipeDao recipeDao) {
-        RecipeService recipeService = new RecipeService();
-        recipeService.setRecipeDao(recipeDao);
-        return recipeService;
-    }
 }

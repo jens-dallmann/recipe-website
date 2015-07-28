@@ -1,6 +1,7 @@
 package de.jd.webconfig;
 
 import de.jd.recipe.RecipeConfiguration;
+import de.jd.recipe.RequestHandlerConfiguration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -16,7 +17,7 @@ public class WebappInitializer implements WebApplicationInitializer{
         // Create the 'root' Spring application context
         AnnotationConfigWebApplicationContext rootContext =
                 new AnnotationConfigWebApplicationContext();
-        rootContext.register(RecipeConfiguration.class);
+        rootContext.register(RequestHandlerConfiguration.class);
         rootContext.refresh();
 
         // Manage the lifecycle of the root application context

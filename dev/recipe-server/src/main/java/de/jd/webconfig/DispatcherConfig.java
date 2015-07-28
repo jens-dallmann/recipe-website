@@ -1,6 +1,7 @@
 package de.jd.webconfig;
 
 import de.jd.recipe.RecipeConfiguration;
+import de.jd.recipe.RequestHandlerConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableWebMvc
-@Import(RecipeConfiguration.class)
+@Import(RequestHandlerConfiguration.class)
 public class DispatcherConfig extends WebMvcConfigurerAdapter {
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
