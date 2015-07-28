@@ -1,21 +1,25 @@
+@import "_bootstrap-variables";
 $font-stack:    Helvetica, sans-serif;
 $primary-color: #333;
 
 .main-placement {
-    background-color: #FFFFFF;
+  background-color: $brand-primary;
+  height: 60%;
 }
-.footer-placement {
-    background-color: #000000;
-        height: 30%;
 
-}
+.footer-placement {
+  background-color: $brand-primary;
+  height: 20%;
+  }
+
 .header-placement {
-    background-color: #000000;
-    height: 30%;
-}
+  background-color: $brand-primary;
+  height: 20%;
+ }
 
 .logo {
-    background-color: #FFFFFF;
-    width: 240px;
-    height: 200px;
+  position: relative;
+  width: 20%;
+  height: 100%;
 }
+
