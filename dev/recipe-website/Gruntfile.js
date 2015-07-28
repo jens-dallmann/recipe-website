@@ -6,11 +6,11 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        distDir: 'target/resources',
-        distDirCss: '<%= distDir %>/css',
-        distDirJs: '<%= distDir %>/js',
-        distDirImg: '<%= distDir %>/images',
-        distDirFonts: '<%= distDir %>/fonts',
+        webappSourceDir: 'target/recipe-website',
+        webappSourceDirCss: '<%= webappSourceDir %>/css',
+        webappSourceDirJs: '<%= webappSourceDir %>/js',
+        webappSourceDirImg: '<%= webappSourceDir %>/images',
+        webappSourceDirFonts: '<%= webappSourceDir %>/fonts',
         sassSource: 'src/sass',
         bootstrapDir: 'node_modules/bootstrap-sass/assets',
         jqueryDir: 'node_modules/jquery/dist',
@@ -25,14 +25,14 @@ module.exports = function(grunt) {
         // --- Task configuration ---
         clean: {
           build: {
-            src: ['<%= distDir %>/css', '<%= distDir %>/js','<%= distDir %>/fonts','<%= distDir %>/images']
+            src: ['<%= webappSourceDir %>/css', '<%= webappSourceDir %>/js','<%= webappSourceDir %>/fonts','<%= webappSourceDir %>/images']
           }
         },
         sass: {
               dist: {
                 files: {
-                    '<%= distDir %>/css/recipe-website.css':'<%= sassSource %>/style.scss',
-                    '<%= distDir %>/css/bootstrap.css':'<%= sassSource %>/bootstrap.scss'
+                    '<%= webappSourceDir %>/css/recipe-website.css':'<%= sassSource %>/style.scss',
+                    '<%= webappSourceDir %>/css/bootstrap.css':'<%= sassSource %>/bootstrap.scss'
                 }
               }
             },
@@ -47,21 +47,21 @@ module.exports = function(grunt) {
             expand: true,
             cwd: '<%=  bootstrapDir %>/fonts/',
             src: '**',
-            dest: '<%=  distDirFonts %>'
+            dest: '<%=  webappSourceDirFonts %>'
           },
           javascripts: {
             expand: true,
             flatten: true,
             filter: 'isFile',
             src: ['src/js/*', '<%=  jqueryDir %>/jquery.js', '<%=  bootstrapDir %>/javascripts/bootstrap.js'],
-            dest: '<%=  distDirJs %>'
+            dest: '<%=  webappSourceDirJs %>'
           },
           images: {
             expand: true,
             flatten: true,
             filter: 'isFile',
             src: ['src/images/**'],
-            dest: '<%=  distDirImg %>'
+            dest: '<%=  webappSourceDirImg %>'
           }
         },
         autoprefixer: {
@@ -70,7 +70,7 @@ module.exports = function(grunt) {
             map: true
           },
           recipeWebsite: {
-            src: '<%= distDirCss %>/recipe-website.css'
+            src: '<%= webappSourceDirCss %>/recipe-website.css'
           }
         }
 

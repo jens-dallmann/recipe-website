@@ -35,7 +35,7 @@
                 <configuration>
                     <webResources>
                         <resource>
-                            <directory>target/resources</directory>
+                            <directory>target/recipe-website</directory>
                         </resource>
                     </webResources>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -44,6 +44,7 @@
           <plugin>
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
+              <version>0.0.23</version>
             <executions>
               <execution>
                 <id>install node and npm</id>
