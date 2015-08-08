@@ -3,6 +3,7 @@ package de.jd.recipeWebsite;
 import de.jd.entities.Recipe;
 import de.jd.entities.RecipeImpl;
 import de.jd.status.OneRecipeStatusResponse;
+import de.jd.urls.RecipeServerUrls;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
