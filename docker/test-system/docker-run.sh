@@ -20,6 +20,7 @@ IPADDRESS="$(echo -e "${IPADDRESS}" | sed -e 's/^[[:space:]]*//')"
 
 echo "${IPADDRESS} recipe-server.jd.de" >> /etc/hosts
 echo "${IPADDRESS} recipe-website.jd.de" >> /etc/hosts
+echo "${IPADDRESS} recipe-server-demodata.jd.de" >> /etc/hosts
 
 echo "=======================Relevant Informations=============================="
 echo "Container Name: ${CONTAINER_NAME}"
@@ -30,3 +31,4 @@ echo "password: docker"
 echo "=======================Deployed Applications=============================="
 echo "recipe-server: http://recipe-server.jd.de/"
 echo "recipe-website: http://recipe-website.jd.de/"
+echo "recipe-server-demodata: http://recipe-server-demodata.jd.de/"
