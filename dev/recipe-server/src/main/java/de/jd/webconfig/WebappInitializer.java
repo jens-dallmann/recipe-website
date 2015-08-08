@@ -1,6 +1,5 @@
 package de.jd.webconfig;
 
-import de.jd.recipe.RecipeConfiguration;
 import de.jd.recipe.RequestHandlerConfiguration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
