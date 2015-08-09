@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <recipe>
-       <title>Bratkartoffeln</title>
+    <title>Bratkartoffeln</title>
+    <images>
+        <images>classpath:/data/potatoes.jpg</images>
+    </images>
 </recipe>

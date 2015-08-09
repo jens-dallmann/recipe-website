@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import de.jd.server.demodata.communicator.RecipeServerCommunicator;
 import de.jd.server.demodata.communicator.RecipeServerCommunicatorImpl;
 import de.jd.server.demodata.handler.DemodataHandler;
+import de.jd.server.demodata.handler.ImageResolver;
 import de.jd.server.demodata.handler.RecipeDemodataHandler;
 import de.jd.server.demodata.service.DemodataService;
 import de.jd.server.demodata.service.RecipeDemodataService;
@@ -62,10 +63,12 @@ public class DemodataConfiguration {
 
     @Bean (name = "recipeHandler")
     public RecipeDemodataHandler recipeDemodataHandler(@Qualifier("xmlObjectMapper") ObjectMapper objectMapper,
-                                                       @Qualifier("recipeServerCommunicator") RecipeServerCommunicator recipeServerCommunicator) {
+                                                       @Qualifier("recipeServerCommunicator") RecipeServerCommunicator recipeServerCommunicator,
+                                                       @Qualifier("imageResolver") ImageResolver imageResolver) {
         RecipeDemodataHandler recipeDemodataHandler = new RecipeDemodataHandler();
         recipeDemodataHandler.setObjectMapper(objectMapper);
         recipeDemodataHandler.setRecipeServerCommunicator(recipeServerCommunicator);
+        recipeDemodataHandler.setImageResolver(imageResolver);
         return recipeDemodataHandler;
     }
 
@@ -76,5 +79,10 @@ public class DemodataConfiguration {
         recipeServerCommunicator.setRestTemplate(restTemplate);
         recipeServerCommunicator.setRecipeServerUrls(recipeServerUrls);
         return recipeServerCommunicator;
+    }
+
+    @Bean (name = "imageResolver")
+    public ImageResolver imageResolver() {
+        return new ImageResolver();
     }
 }

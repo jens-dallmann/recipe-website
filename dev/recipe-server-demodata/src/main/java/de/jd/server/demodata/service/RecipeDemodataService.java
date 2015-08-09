@@ -37,7 +37,7 @@ public class RecipeDemodataService implements DemodataService, ResourceLoaderAwa
                 DemodataHandler demodataHandler = demodataHandlers.get(tagName);
                 if (demodataHandler != null) {
                     HandlerResult handle = demodataHandler.handle(resource);
-                    if(!handle.isSuccessfull()){
+                    if(handle != null && !handle.isSuccessfull()){
                         logger.warn("Resource not posted: "+resource.getFilename());
                     }
                     else {
@@ -48,12 +48,11 @@ public class RecipeDemodataService implements DemodataService, ResourceLoaderAwa
                 }
             }
         } catch (IOException e) {
-            logger.error("Can not load resource: " + e.getMessage());
+            logger.error("Can not load resource: " + e.getMessage(), e);
         } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-
+            logger.error("Parse error: "+e.getMessage(), e);
         } catch (SAXException e) {
-            e.printStackTrace();
+           logger.error("SaxException while opening xml resource", e);
         }
         return true;
     }
