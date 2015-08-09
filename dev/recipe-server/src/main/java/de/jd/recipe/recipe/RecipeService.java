@@ -19,7 +19,7 @@ public class RecipeService {
 
     @RequestMapping(value = "/recipe/{id}", produces = "application/json", method = RequestMethod.GET)
     @ResponseBody
-    public OneRecipeStatusResponse recipe(@PathVariable String id) {
+    public OneRecipeStatusResponse recipe(@PathVariable("id") String id) {
         LOG.info("Try to get recipe");
         RecipeImpl queryObject = new RecipeImpl();
         queryObject.setId(id);
