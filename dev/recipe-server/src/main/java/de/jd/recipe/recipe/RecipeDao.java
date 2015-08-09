@@ -1,15 +1,14 @@
-package de.jd.recipe;
+package de.jd.recipe.recipe;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import de.jd.entities.RecipeImpl;
+import de.jd.recipe.IdConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +17,8 @@ public class RecipeDao {
     private DBCollection recipeCollection;
 
     private final static Logger log = LoggerFactory.getLogger(RecipeDao.class);
+    private IdConverter idConverter;
 
-    @Resource(name = "recipe-collection")
     public void setRecipeCollection(DBCollection recipeCollection) {
         this.recipeCollection = recipeCollection;
     }
@@ -52,16 +51,29 @@ public class RecipeDao {
         int max = 0;
         for (RecipeImpl recipe : all) {
             String id = recipe.getId();
-            int internalId = RecipeIdResolver.toInternalId(id);
+            int internalId = idConverter.toInternalId(id);
             max = Math.max(max, internalId);
         }
         return max;
     }
 
     public synchronized void post(RecipeImpl recipe) {
-        recipe.setId(RecipeIdResolver.toExternalId(retrieveHighestId() + 1));
+        if(recipe.getId() == null || doesExist(recipe.getId())) {
+            recipe.setId(idConverter.toExternalId(retrieveHighestId() + 1));
+        }
         Map<String, Object> properties = recipe.getProperties();
         BasicDBObject basicDBObject = new BasicDBObject(properties);
         recipeCollection.insert(basicDBObject);
+    }
+
+    private boolean doesExist(String id) {
+        RecipeImpl queryRecipe = new RecipeImpl();
+        queryRecipe.setId(id);
+        RecipeImpl one = findOne(queryRecipe);
+        return one != null;
+    }
+
+    public void setIdConverter(IdConverter idConverter) {
+        this.idConverter = idConverter;
     }
 }

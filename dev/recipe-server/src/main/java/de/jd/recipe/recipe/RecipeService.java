@@ -1,4 +1,4 @@
-package de.jd.recipe;
+package de.jd.recipe.recipe;
 
 import de.jd.entities.RecipeImpl;
 import de.jd.status.OneRecipeStatusResponse;
