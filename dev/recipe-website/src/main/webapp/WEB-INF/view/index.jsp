@@ -3,19 +3,19 @@
 <html>
 <head>
     <title>Recipe</title></head>
-    <link rel="stylesheet" type="text/css" href="css/recipe-website.css">
-    <link rel="stylesheet" type="text/css" href="css/recipe-website-navbar.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-variables.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css">
-    <script src="js/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="css/recipe-website.css">
+<link rel="stylesheet" type="text/css" href="css/recipe-website-navbar.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-variables.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css">
+<script src="js/bootstrap.js"></script>
 
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row header-placement" >
+    <div class="row header-placement">
         <div class="col-md-3 col-lg-3">
-                <c:import url="/recipe/header"/>
+            <c:import url="/recipe/header"/>
         </div>
     </div>
     <div class="row recipe-navbar">
