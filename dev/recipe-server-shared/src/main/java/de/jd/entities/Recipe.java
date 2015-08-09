@@ -8,15 +8,15 @@ import java.util.List;
 @JsonDeserialize(as = RecipeImpl.class)
 public interface Recipe extends Serializable {
 
-    public String getId();
+    String getId();
 
-    public void setId(String id);
+    void setId(String id);
 
-    public void setImages(List<String> images);
+    void setImages(List<String> images);
 
-    public List<String> getImages();
+    List<String> getImages();
 
-    public String getTitle();
+    String getTitle();
 
-    public void setTitle(String title);
+    void setTitle(String title);
 }
