@@ -10,11 +10,6 @@ import org.springframework.web.servlet.config.annotation.*;
 @EnableWebMvc
 @Import(RequestHandlerConfiguration.class)
 public class DispatcherConfig extends WebMvcConfigurerAdapter {
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addStatusController("/test", HttpStatus.OK);
-        super.addViewControllers(registry);
-    }
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
