@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<category>
+    <title>Autumn Recipes</title>
+    <recipes>
+        <recipes>
+            <id>recipe-1</id>
+            <id>recipe-3</id>
+        </recipes>
+    </recipes>
+</category>

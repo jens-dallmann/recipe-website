@@ -1,6 +1,5 @@
 package de.jd.server.demodata.service;
 
-import de.jd.server.demodata.handler.HandlerResult;
 import de.jd.server.demodata.handler.DemodataHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +15,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RecipeDemodataService implements DemodataService, ResourceLoaderAware {
@@ -29,37 +31,54 @@ public class RecipeDemodataService implements DemodataService, ResourceLoaderAwa
         PathMatchingResourcePatternResolver pathMatchingResourcePatternResolver = new PathMatchingResourcePatternResolver(resourceLoader);
         try {
             Resource[] resources = pathMatchingResourcePatternResolver.getResources("classpath:/data/**/*.xml");
-            for (Resource resource : resources) {
-                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-                DocumentBuilder db = dbf.newDocumentBuilder();
-                Document doc = db.parse(new InputSource(resource.getInputStream()));
-                String tagName = doc.getDocumentElement().getTagName();
-                DemodataHandler demodataHandler = demodataHandlers.get(tagName);
-                if (demodataHandler != null) {
-                    HandlerResult handle = demodataHandler.handle(resource);
-                    if(handle != null && !handle.isSuccessfull()){
-                        logger.warn("Resource not posted: "+resource.getFilename());
-                    }
-                    else {
-                        logger.info("Resource loading successfull"+resource.getFilename());
-                    }
-                } else {
-                    logger.warn("No demodata handler found for tagname: " + tagName);
-                }
+
+            Map<String, List<Resource>> sortedResources = filterByTagname(resources);
+            List<Resource> recipes = sortedResources.get("recipe");
+            DemodataHandler recipeHandler = demodataHandlers.get("recipe");
+            for (Resource recipe : recipes) {
+                recipeHandler.handle(recipe);
+            }
+
+            List<Resource> categories = sortedResources.get("category");
+            DemodataHandler categoryHandler = demodataHandlers.get("category");
+
+            for(Resource category : categories) {
+                categoryHandler.handle(category);
             }
         } catch (IOException e) {
             logger.error("Can not load resource: " + e.getMessage(), e);
-        } catch (ParserConfigurationException e) {
-            logger.error("Parse error: "+e.getMessage(), e);
-        } catch (SAXException e) {
-           logger.error("SaxException while opening xml resource", e);
         }
         return true;
     }
 
+    private Map<String, List<Resource>> filterByTagname(Resource[] resources) {
+        Map<String, List<Resource>> resourceSorted = new HashMap<>();
+        for (Resource resource : resources) {
+            try {
+                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+                DocumentBuilder db = null;
+                db = dbf.newDocumentBuilder();
+                Document doc = db.parse(new InputSource(resource.getInputStream()));
+                String tagName = doc.getDocumentElement().getTagName();
+                if(resourceSorted.get(tagName) == null) {
+                    resourceSorted.put(tagName, new ArrayList<Resource>());
+                }
+                resourceSorted.get(tagName).add(resource);
+
+            } catch (ParserConfigurationException e) {
+                logger.error("Parse exception",e);
+            } catch (SAXException e) {
+                logger.error("SaxException while opening xml resource", e);
+            } catch (IOException e) {
+                logger.error("Can not load resource: " + e.getMessage(), e);
+
+            }
+        }
+        return resourceSorted;
+    }
+
     @Override
     public void setResourceLoader(ResourceLoader resourceLoader) {
-
         this.resourceLoader = resourceLoader;
     }
 

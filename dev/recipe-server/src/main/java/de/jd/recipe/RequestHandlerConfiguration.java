@@ -8,8 +8,10 @@ import de.jd.recipe.recipe.RecipeDao;
 import de.jd.recipe.recipe.RecipeService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+@Configuration
 @Import({RecipeConfiguration.class, CategoryConfiguration.class})
 public class RequestHandlerConfiguration {
     @Bean(name = "recipeService")

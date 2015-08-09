@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe>
+    <title>Salad</title>
+    <id>recipe-2</id>
+    <images>
+        <images>classpath:/data/salad.jpg</images>
+    </images>
+</recipe>

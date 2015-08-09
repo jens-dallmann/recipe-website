@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <recipe>
-       <title>Kürbissuppe</title>
+       <title>Pumpkin Soup</title>
+       <id>recipe-3</id>
        <images>
               <images>classpath:/data/pumpkinSoup.jpg</images>
        </images>
