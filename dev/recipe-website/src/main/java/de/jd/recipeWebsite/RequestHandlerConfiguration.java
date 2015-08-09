@@ -1,5 +1,6 @@
 package de.jd.recipeWebsite;
 
+import de.jd.urls.CategoryServerUrls;
 import de.jd.urls.RecipeServerUrls;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -13,9 +14,11 @@ public class RequestHandlerConfiguration {
 
     @Bean (name = "recipeController")
     public RecipeController recipeController(@Qualifier(value="restTemplate") RestTemplate restTemplate,
-                                             @Qualifier(value="recipeServerUrls") RecipeServerUrls recipeServerUrls) {
+                                             @Qualifier(value="recipeServerUrls") RecipeServerUrls recipeServerUrls,
+                                             @Qualifier(value="categoryServerUrls")CategoryServerUrls categoryServerUrls) {
         RecipeController recipeController = new RecipeController();
         recipeController.setRecipeServerUrls(recipeServerUrls);
+        recipeController.setCategoryServiceUrls(categoryServerUrls);
         recipeController.setRestTemplate(restTemplate);
         return recipeController;
     }

@@ -1,5 +1,6 @@
 package de.jd.recipeWebsite;
 
+import de.jd.urls.CategoryServerUrls;
 import de.jd.urls.RecipeServerUrls;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,14 @@ public class RecipeWebsiteConfiguration {
         String serverUrls = environment.getProperty("recipe.service.base.url");
         recipeServerUrls.setRecipeServerBaseUrl(serverUrls);
         return recipeServerUrls;
+    }
+
+    @Bean (name = "categoryServerUrls")
+    public CategoryServerUrls categoryServerUrls(Environment environment) {
+        CategoryServerUrls categoryServerUrls = new CategoryServerUrls();
+        String serverUrls = environment.getProperty("recipe.service.base.url");
+        categoryServerUrls.setCategoryServerBaseUrl(serverUrls);
+        return categoryServerUrls;
     }
 
     @Bean (name = "restTemplate")

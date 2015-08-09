@@ -32,6 +32,7 @@ module.exports = function(grunt) {
               dist: {
                 files: {
                     '<%= webappSourceDir %>/css/recipe-website.css':'<%= sassSource %>/style.scss',
+                    '<%= webappSourceDir %>/css/recipe-website-navbar.css':'<%= sassSource %>/navbar.scss',
                     '<%= webappSourceDir %>/css/bootstrap.css':'<%= sassSource %>/bootstrap.scss'
                 }
               }

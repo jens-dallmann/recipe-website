@@ -1,1 +1,1 @@
-<img src="images/header.jpg" class="img-responsive logo"/>
+<span class="header-logo glyphicon glyphicon-cutlery"></span>

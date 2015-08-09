@@ -1,8 +1,10 @@
 package de.jd.recipeWebsite;
 
+import de.jd.entities.Category;
 import de.jd.entities.Recipe;
 import de.jd.entities.RecipeImpl;
 import de.jd.status.OneRecipeStatusResponse;
+import de.jd.urls.CategoryServerUrls;
 import de.jd.urls.RecipeServerUrls;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +28,7 @@ public class RecipeController {
     public RestTemplate restTemplate;
 
     public RecipeServerUrls recipeServerUrls;
+    private CategoryServerUrls categoryServiceUrls;
 
     @RequestMapping("/recipe/{id}")
     public String getRecipe(Model m, @PathVariable String id, HttpServletRequest request) {
@@ -54,15 +57,15 @@ public class RecipeController {
         return modelAndView;
     }
 
-    @RequestMapping("/sidebar")
-    public ModelAndView getSidebar() {
-        String allRecipesUrl = recipeServerUrls.getAllRecipesUrl();
+    @RequestMapping("/navbar")
+    public ModelAndView getNavbar() {
+        String allCategories = categoryServiceUrls.getAllCategories();
 
-        LOG.debug("Retrieve all recipes by using url: \"{}\"", allRecipesUrl);
-        List<Recipe> recipe = restTemplate.getForObject(allRecipesUrl, List.class);
+        LOG.debug("Retrieve all categories by using url: \"{}\"", allCategories);
+        List<Category> categories = restTemplate.getForObject(allCategories, List.class);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("recipes", recipe);
-        modelAndView.setViewName("sidebar");
+        modelAndView.addObject("categories", categories);
+        modelAndView.setViewName("navbar");
         return modelAndView;
     }
 
@@ -96,6 +99,10 @@ public class RecipeController {
 
     public void setRecipeServerUrls(RecipeServerUrls recipeServerUrls) {
         this.recipeServerUrls = recipeServerUrls;
+    }
+
+    public void setCategoryServiceUrls(CategoryServerUrls categoryServiceUrls) {
+        this.categoryServiceUrls = categoryServiceUrls;
     }
 
     public void setRestTemplate(RestTemplate restTemplate) {

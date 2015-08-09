@@ -4,6 +4,7 @@
 <head>
     <title>Recipe</title></head>
     <link rel="stylesheet" type="text/css" href="css/recipe-website.css">
+    <link rel="stylesheet" type="text/css" href="css/recipe-website-navbar.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-variables.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css">
@@ -16,10 +17,9 @@
         <div class="col-md-3 col-lg-3">
                 <c:import url="/recipe/header"/>
         </div>
-        <div class="col-md-9 col-lg-9">
-            <!--Recipe Navigation -->
-            <c:import url="/sidebar"/>
-        </div>
+    </div>
+    <div class="row recipe-navbar">
+        <div class="col-sm-12"><c:import url="/navbar"/></div>
     </div>
     <!-- main section -->
     <div class="row main-placement">
