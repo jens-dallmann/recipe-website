@@ -13,9 +13,9 @@
         <!-- Collection of nav links and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <c:forEach items="${categories}" var="category">
+                <c:forEach items="${navbarCategories}" var="category">
 
-                    <li><a href="/category/${category.id}">${category.title}</a></li>
+                    <li><a href="main/category/${category.id}">${category.title}</a></li>
                 </c:forEach>
             </ul>
         </div>

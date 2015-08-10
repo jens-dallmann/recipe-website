@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 @Configuration
 @Import(RecipeWebsiteConfiguration.class)
 public class RequestHandlerConfiguration {
@@ -24,7 +26,21 @@ public class RequestHandlerConfiguration {
     }
 
     @Bean (name = "indexController")
-    public IndexController indexController() {
-        return new IndexController();
+    public IndexController indexController(@Qualifier(value="restTemplate") RestTemplate restTemplate,
+                                           @Qualifier(value="categoryServerUrls") CategoryServerUrls categoryServerUrls,
+                                           List<MainHandler> mainHandlerList) {
+        IndexController indexController = new IndexController();
+        indexController.setMainHandlers(mainHandlerList);
+        return indexController;
+    }
+
+
+    @Bean
+    public CategoryMainHandler categoryMainHandler(@Qualifier("restTemplate") RestTemplate restTemplate,
+                                                   @Qualifier("categoryServerUrls") CategoryServerUrls categoryServerUrls) {
+        CategoryMainHandler categoryMainHandler = new CategoryMainHandler();
+        categoryMainHandler.setCategoryServerUrls(categoryServerUrls);
+        categoryMainHandler.setRestTemplate(restTemplate);
+        return categoryMainHandler;
     }
 }

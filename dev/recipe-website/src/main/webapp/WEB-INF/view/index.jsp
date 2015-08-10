@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--@elvariable id="isIncluded" type="java.lang.Boolean"--%>
 <html>
 <head>
     <title>Recipe</title></head>
@@ -23,7 +24,22 @@
     </div>
     <!-- main section -->
     <div class="row main-placement">
-        <div class="col-sm-12 col-md-12 col-lg-12"><c:import url="/recipe/recipe-2"/></div>
+        <c:choose>
+            <c:when test="${context != null}">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <c:if test="${isIncluded}">
+                        <c:import url="/main/include/${context}">
+                            <c:param name="urlParam" value='${urlParam}' />
+                        </c:import>
+                    </c:if>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <c:import url="/recipe/"/>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </div>
 
     <!-- footer section -->

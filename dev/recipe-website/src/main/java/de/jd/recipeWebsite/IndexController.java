@@ -1,13 +1,55 @@
 package de.jd.recipeWebsite;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 public class IndexController {
 
+    private List<MainHandler> mainHandlers;
+
     @RequestMapping("/")
-    public String index() {
-        return "index";
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("isIncluded", false);
+        return modelAndView;
+    }
+    @RequestMapping("/include")
+    public ModelAndView include() {
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("isIncluded", true);
+        return modelAndView;
+    }
+
+    @RequestMapping("/main/category/{categoryId}")
+    public ModelAndView includeCategory(@PathVariable("categoryId") String categoryId, RedirectAttributes attributes) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/include");
+        attributes.addFlashAttribute("context", "categoryMain").addFlashAttribute("urlParam", categoryId);
+        return modelAndView;
+    }
+
+    @RequestMapping("/main/include/{context}")
+    public ModelAndView includeMain(@PathVariable("context") String context,
+                                    @RequestParam("urlParam") String urlParam) {
+        for(MainHandler mainHandler: mainHandlers) {
+            if(mainHandler.canHandle(context, urlParam)) {
+                ModelAndView handle = mainHandler.handle(urlParam);
+                handle.addObject("isIncluded", true);
+                return handle;
+            }
+        }
+        return new ModelAndView("index");
+    }
+
+    public void setMainHandlers(List<MainHandler> mainHandlers) {
+        this.mainHandlers = mainHandlers;
     }
 }

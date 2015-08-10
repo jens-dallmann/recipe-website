@@ -64,7 +64,7 @@ public class RecipeController {
         LOG.debug("Retrieve all categories by using url: \"{}\"", allCategories);
         List<Category> categories = restTemplate.getForObject(allCategories, List.class);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("categories", categories);
+        modelAndView.addObject("navbarCategories", categories);
         modelAndView.setViewName("navbar");
         return modelAndView;
     }
