@@ -16,4 +16,6 @@ public interface Category {
     void setId(String id);
     String getId();
 
+    void setText(String text);
+    String getText();
 }

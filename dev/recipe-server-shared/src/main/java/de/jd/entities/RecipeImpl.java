@@ -42,6 +42,16 @@ public class RecipeImpl implements Recipe {
         properties.put("title", title);
     }
 
+    @Override
+    public String getText() {
+        return (String) properties.get("text");
+    }
+
+    @Override
+    public void setText(String text) {
+        properties.put("text", text);
+    }
+
     public void setProperties(Map<String, Object> properties) {
         this.properties = properties;
     }

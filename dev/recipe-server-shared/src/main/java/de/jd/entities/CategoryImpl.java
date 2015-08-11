@@ -10,6 +10,7 @@ import java.util.Map;
 public class CategoryImpl implements Category {
     @JsonIgnore
     private Map<String, Object> properties;
+    private String text;
 
     public CategoryImpl() {
         properties = new HashMap<>();
@@ -47,6 +48,16 @@ public class CategoryImpl implements Category {
     @Override
     public String getId() {
         return (String) properties.get("id");
+    }
+
+    @Override
+    public void setText(String text) {
+        properties.put("text",text);
+    }
+
+    @Override
+    public String getText() {
+        return (String) properties.get("text");
     }
 
     public Map<String, Object> getProperties() {
