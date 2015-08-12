@@ -6,12 +6,8 @@
 <head>
     <title>Recipe</title></head>
 <link rel="stylesheet" type="text/css" href="<jd:link path="/css/recipe-website.css"/>">
-
 <link rel="stylesheet" type="text/css" href="<jd:link path="/css/recipe-website-navbar.css"/>">
-<link rel="stylesheet" type="text/css" href="<jd:link path="/css/bootstrap-variables.css"/>">
 <link rel="stylesheet" type="text/css" href="<jd:link path="/css/bootstrap.css"/>">
-<link rel="stylesheet" type="text/css" href="<jd:link path="/css/bootstrap/bootstrap-theme.css"/>">
-<script src="js/bootstrap.js"></script>
 
 </head>
 <body>
@@ -49,8 +45,8 @@
         <div class="col-sm-12 col-md-12 col-lg-12"><c:import url="/footer"/></div>
     </div>
 </div>
-
-<script src="resources/js/jquery.min.js"></script>
-<script src="resources/js/bootstrap/bootstrap.js"></script>
+min
+<script src="<jd:link path="/js/jquery.js"/>"></script>
+<script src="<jd:link path="/js/bootstrap.js"/>"></script>
 </body>
 </html>
