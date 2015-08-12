@@ -68,14 +68,14 @@ public class CategoryDao {
     }
 
     public List<CategoryImpl> findAll() {
-        DBCursor storedRecipes = collection.find();
-        List<CategoryImpl> allRecipes = new ArrayList<>();
+        DBCursor storedCategories = collection.find();
+        List<CategoryImpl> allCategories = new ArrayList<>();
 
-        for (DBObject oneCategory : storedRecipes) {
+        for (DBObject oneCategory : storedCategories) {
             Map<String, Object> complete = withRecipeObjects(oneCategory);
-            allRecipes.add(new CategoryImpl(complete));
+            allCategories.add(new CategoryImpl(complete));
         }
-        return allRecipes;
+        return allCategories;
     }
 
     public int retrieveHighestId() {
