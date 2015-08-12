@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -22,12 +21,22 @@ public class IndexController {
     }
 
     @RequestMapping("/main/category/{categoryId}")
-    public ModelAndView includeCategory(@PathVariable("categoryId") String categoryId, HttpServletRequest request) {
+    public ModelAndView includeCategory(@PathVariable("categoryId") String categoryId) {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
         modelAndView.addObject("context", "categoryMain");
         modelAndView.addObject("urlParam", categoryId);
+        modelAndView.addObject("isIncluded", true);
+        return modelAndView;
+    }
+
+    @RequestMapping("/main/recipe/{recipeId}")
+    public ModelAndView includeRecipe(@PathVariable("recipeId") String recipeId) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
+        modelAndView.addObject("context", "recipeMain");
+        modelAndView.addObject("urlParam", recipeId);
         modelAndView.addObject("isIncluded", true);
         return modelAndView;
     }

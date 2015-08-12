@@ -43,4 +43,13 @@ public class RequestHandlerConfiguration {
         categoryMainHandler.setRestTemplate(restTemplate);
         return categoryMainHandler;
     }
+
+    @Bean
+    public RecipeMainHandler recipeMainHandler(@Qualifier("restTemplate") RestTemplate restTemplate,
+                                                   @Qualifier("recipeServerUrls") RecipeServerUrls recipeServerUrls) {
+        RecipeMainHandler recipeMainHandler = new RecipeMainHandler();
+        recipeMainHandler.setRecipeServerUrls(recipeServerUrls);
+        recipeMainHandler.setRestTemplate(restTemplate);
+        return recipeMainHandler;
+    }
 }
