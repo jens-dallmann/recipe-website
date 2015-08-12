@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -20,27 +20,23 @@ public class IndexController {
         modelAndView.addObject("isIncluded", false);
         return modelAndView;
     }
-    @RequestMapping("/include")
-    public ModelAndView include() {
-        ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("isIncluded", true);
-        return modelAndView;
-    }
 
     @RequestMapping("/main/category/{categoryId}")
-    public ModelAndView includeCategory(@PathVariable("categoryId") String categoryId, RedirectAttributes attributes) {
+    public ModelAndView includeCategory(@PathVariable("categoryId") String categoryId, HttpServletRequest request) {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/include");
-        attributes.addFlashAttribute("context", "categoryMain").addFlashAttribute("urlParam", categoryId);
+        modelAndView.setViewName("index");
+        modelAndView.addObject("context", "categoryMain");
+        modelAndView.addObject("urlParam", categoryId);
+        modelAndView.addObject("isIncluded", true);
         return modelAndView;
     }
 
     @RequestMapping("/main/include/{context}")
     public ModelAndView includeMain(@PathVariable("context") String context,
                                     @RequestParam("urlParam") String urlParam) {
-        for(MainHandler mainHandler: mainHandlers) {
-            if(mainHandler.canHandle(context, urlParam)) {
+        for (MainHandler mainHandler : mainHandlers) {
+            if (mainHandler.canHandle(context, urlParam)) {
                 ModelAndView handle = mainHandler.handle(urlParam);
                 handle.addObject("isIncluded", true);
                 return handle;

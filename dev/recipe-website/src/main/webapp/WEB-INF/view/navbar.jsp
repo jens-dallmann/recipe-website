@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="jd" uri="/resources/linkTag.tld"%>
+
 <div>
     <div id="recipe-navbar" role="navigation" class="navbar navbar-default">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -15,7 +17,7 @@
             <ul class="nav navbar-nav">
                 <c:forEach items="${navbarCategories}" var="category">
 
-                    <li><a href="main/category/${category.id}">${category.title}</a></li>
+                    <li><a href="<jd:link path="/main/category/${category.id}"/>">${category.title}</a></li>
                 </c:forEach>
             </ul>
         </div>

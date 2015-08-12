@@ -1,14 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="jd" uri="/resources/linkTag.tld"%>
 <%--@elvariable id="isIncluded" type="java.lang.Boolean"--%>
 <html>
 <head>
     <title>Recipe</title></head>
-<link rel="stylesheet" type="text/css" href="css/recipe-website.css">
-<link rel="stylesheet" type="text/css" href="css/recipe-website-navbar.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap-variables.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="<jd:link path="/css/recipe-website.css"/>">
+
+<link rel="stylesheet" type="text/css" href="<jd:link path="/css/recipe-website-navbar.css"/>">
+<link rel="stylesheet" type="text/css" href="<jd:link path="/css/bootstrap-variables.css"/>">
+<link rel="stylesheet" type="text/css" href="<jd:link path="/css/bootstrap.css"/>">
+<link rel="stylesheet" type="text/css" href="<jd:link path="/css/bootstrap/bootstrap-theme.css"/>">
 <script src="js/bootstrap.js"></script>
 
 </head>

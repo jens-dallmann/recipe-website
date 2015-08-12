@@ -24,6 +24,7 @@
                     <warSourceDirectory>${project.build.directory}/${artifactId}</warSourceDirectory>
                     <systemProperties>
                         <recipe.service.base.url>http://localhost:9000/recipe-server</recipe.service.base.url>
+                        <developmentMode>true</developmentMode>
                     </systemProperties>
                 </configuration>
                 <version>2.2</version>
@@ -114,6 +115,12 @@
             <groupId>de.jd</groupId>
             <artifactId>recipe-server-shared</artifactId>
             <version>0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.1</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

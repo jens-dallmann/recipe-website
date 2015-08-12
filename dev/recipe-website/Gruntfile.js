@@ -11,6 +11,7 @@ module.exports = function(grunt) {
         webappSourceDirJs: '<%= webappSourceDir %>/js',
         webappSourceDirImg: '<%= webappSourceDir %>/images',
         webappSourceDirFonts: '<%= webappSourceDir %>/fonts',
+        webappSourceDirResources: '<%= webappSourceDir %>/resources',
         sassSource: 'src/sass',
         bootstrapDir: 'node_modules/bootstrap-sass/assets',
         jqueryDir: 'node_modules/jquery/dist',
@@ -25,7 +26,7 @@ module.exports = function(grunt) {
         // --- Task configuration ---
         clean: {
           build: {
-            src: ['<%= webappSourceDir %>/css', '<%= webappSourceDir %>/js','<%= webappSourceDir %>/fonts','<%= webappSourceDir %>/images']
+            src: ['<%= webappSourceDirCss %>', '<%= webappSourceDirJs %>','<%= webappSourceDirFonts %>','<%= webappSourceDirImg %>','<%= webappSourceDirResources %>']
           }
         },
         sass: {
@@ -63,6 +64,13 @@ module.exports = function(grunt) {
             filter: 'isFile',
             src: ['src/images/**'],
             dest: '<%=  webappSourceDirImg %>'
+          },
+          resources: {
+            expand: true,
+            flatten: true,
+            filter: 'isFile',
+            src: ['src/main/webapp/WEB-INF/resources/**'],
+            dest: '<%=  webappSourceDirResources %>'
           }
         },
         autoprefixer: {
