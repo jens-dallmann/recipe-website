@@ -45,7 +45,6 @@
         <div class="col-sm-12 col-md-12 col-lg-12"><c:import url="/footer"/></div>
     </div>
 </div>
-min
 <script src="<jd:link path="/js/jquery.js"/>"></script>
 <script src="<jd:link path="/js/bootstrap.js"/>"></script>
 </body>
