@@ -97,6 +97,13 @@ public class RecipeController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/footer", method = RequestMethod.GET)
+    public ModelAndView footer() {
+        LOG.debug("Header requested");
+        ModelAndView modelAndView = new ModelAndView("footer");
+        return modelAndView;
+    }
+
     public void setRecipeServerUrls(RecipeServerUrls recipeServerUrls) {
         this.recipeServerUrls = recipeServerUrls;
     }

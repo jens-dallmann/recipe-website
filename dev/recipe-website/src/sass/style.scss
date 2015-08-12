@@ -8,8 +8,14 @@ $primary-color: #333;
 }
 
 .footer-placement {
+  position: absolute;
+  bottom: 0;
+  width:100%;
   background-color: $brand-primary;
-  height: 20%;
+  border-style: none;
+  height: 120px;
+  background: -webkit-linear-gradient(top, rgba(219, 253, 171, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(to top, rgba(219, 253, 171, 1) 0%, rgba(255, 255, 255, 1) 100%);
   }
 
 .header-placement {
@@ -17,7 +23,7 @@ $primary-color: #333;
   padding-top: 10px;
   border-top: 20px;
   border-style: none;
-  height: 20%;
+  height: 120px;
  }
 
 .recipe-navbar {
