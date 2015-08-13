@@ -12,6 +12,7 @@ module.exports = function(grunt) {
         webappSourceDirImg: '<%= webappSourceDir %>/images',
         webappSourceDirFonts: '<%= webappSourceDir %>/fonts',
         webappSourceDirResources: '<%= webappSourceDir %>/resources',
+        webappSourceDirJsp: '<%= webappSourceDir %>/WEB-INF/view',
         sassSource: 'src/sass',
         bootstrapDir: 'node_modules/bootstrap-sass/assets',
         jqueryDir: 'node_modules/jquery/dist',
@@ -71,6 +72,13 @@ module.exports = function(grunt) {
             filter: 'isFile',
             src: ['src/main/webapp/WEB-INF/resources/**'],
             dest: '<%=  webappSourceDirResources %>'
+          },
+          jsp: {
+            expand: true,
+            flatten: true,
+            filter: 'isFile',
+            src: ['src/main/webapp/WEB-INF/view/**'],
+            dest: '<%=  webappSourceDirJsp %>'
           }
         },
         autoprefixer: {
