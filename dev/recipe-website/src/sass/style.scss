@@ -1,22 +1,26 @@
 @import "_bootstrap-variables";
-$font-stack:    Helvetica, sans-serif;
+@import "mixins.scss";
+
+$font-stack: Helvetica, sans-serif;
 $primary-color: #333;
 
 .main-placement {
+  padding-left: 100px;
+  padding-right: 100px;
   background-color: $brand-primary;
-  height: 60%;
+  margin-bottom: 120px;
+  @include calc(height, 100%, "-", 240px, 1000px);
 }
 
 .footer-placement {
-  position: absolute;
+  position: fixed;
+  width: 100%;
   bottom: 0;
-  width:100%;
   background-color: $brand-primary;
-  border-style: none;
   height: 120px;
   background: -webkit-linear-gradient(top, rgba(219, 253, 171, 1) 0%, rgba(255, 255, 255, 1) 100%);
   background: linear-gradient(to top, rgba(219, 253, 171, 1) 0%, rgba(255, 255, 255, 1) 100%);
-  }
+}
 
 .header-placement {
   background-color: $brand-header;
@@ -24,7 +28,7 @@ $primary-color: #333;
   border-top: 20px;
   border-style: none;
   height: 120px;
- }
+}
 
 .recipe-navbar {
   background-color: rgba(255, 255, 255, 1);

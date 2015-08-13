@@ -21,7 +21,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
                     <port>8090</port>
-                    <warSourceDirectory>${project.build.directory}/${artifactId}</warSourceDirectory>
+                    <warSourceDirectory>${project.build.directory}/${project.artifactId}</warSourceDirectory>
                     <systemProperties>
                         <recipe.service.base.url>http://localhost:9000/recipe-server</recipe.service.base.url>
                         <developmentMode>true</developmentMode>
