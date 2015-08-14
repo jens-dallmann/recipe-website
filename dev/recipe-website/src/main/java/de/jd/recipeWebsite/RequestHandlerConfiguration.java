@@ -26,30 +26,43 @@ public class RequestHandlerConfiguration {
     }
 
     @Bean (name = "indexController")
-    public IndexController indexController(@Qualifier(value="restTemplate") RestTemplate restTemplate,
-                                           @Qualifier(value="categoryServerUrls") CategoryServerUrls categoryServerUrls,
+    public IndexController indexController(@Qualifier(value="contextService") ContextService contextService,
+                                           @Qualifier(value="recipeServerUrls") RecipeServerUrls recipeServerUrls,
+                                           @Qualifier(value="restTemplate") RestTemplate restTemplate,
                                            List<MainHandler> mainHandlerList) {
         IndexController indexController = new IndexController();
         indexController.setMainHandlers(mainHandlerList);
+        indexController.setContextService(contextService);
+        indexController.setRecipeServerUrls(recipeServerUrls);
+        indexController.setRestTemplate(restTemplate);
         return indexController;
     }
 
 
     @Bean
-    public CategoryMainHandler categoryMainHandler(@Qualifier("restTemplate") RestTemplate restTemplate,
-                                                   @Qualifier("categoryServerUrls") CategoryServerUrls categoryServerUrls) {
+    public CategoryMainHandler categoryMainHandler(@Qualifier("contextService") ContextService contextService) {
         CategoryMainHandler categoryMainHandler = new CategoryMainHandler();
-        categoryMainHandler.setCategoryServerUrls(categoryServerUrls);
-        categoryMainHandler.setRestTemplate(restTemplate);
+        categoryMainHandler.setContextService(contextService);
         return categoryMainHandler;
     }
 
     @Bean
     public RecipeMainHandler recipeMainHandler(@Qualifier("restTemplate") RestTemplate restTemplate,
-                                                   @Qualifier("recipeServerUrls") RecipeServerUrls recipeServerUrls) {
+                                               @Qualifier("recipeServerUrls") RecipeServerUrls recipeServerUrls,
+                                               @Qualifier("contextService") ContextService contextService) {
         RecipeMainHandler recipeMainHandler = new RecipeMainHandler();
         recipeMainHandler.setRecipeServerUrls(recipeServerUrls);
         recipeMainHandler.setRestTemplate(restTemplate);
+        recipeMainHandler.setContextService(contextService);
         return recipeMainHandler;
+    }
+
+    @Bean (name = "contextService")
+    public ContextService contextService(@Qualifier("restTemplate") RestTemplate restTemplate,
+                                         @Qualifier("categoryServerUrls") CategoryServerUrls categoryServerUrls) {
+        ContextServiceImpl contextService = new ContextServiceImpl();
+        contextService.setCategoryServerUrls(categoryServerUrls);
+        contextService.setRestTemplate(restTemplate);
+        return contextService;
     }
 }

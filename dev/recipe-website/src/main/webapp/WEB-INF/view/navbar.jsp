@@ -18,10 +18,10 @@
                     <li class="dropdown">
                         <a href="<jd:link path="/main/category/${category.id}"/>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${category.title} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<jd:link path="/main/category/${category.id}"/>">${category.title}</a></li>
+                            <li><a href="<jd:link path="/main/${category.id}"/>">${category.title}</a></li>
                             <li role="separator" class="divider"></li>
                             <c:forEach items="${category.recipes}" var="recipe">
-                                <li><a href="<jd:link path="/main/recipe/${recipe.id}"/>">${recipe.title}</a></li>
+                                <li><a href="<jd:link path="/main/${category.id}/recipe/${recipe.id}"/>">${recipe.title}</a></li>
                             </c:forEach>
                         </ul>
                     </li>
