@@ -60,8 +60,6 @@ public class RecipeController {
     @RequestMapping("/navbar")
     public ModelAndView getNavbar() {
         String allCategories = categoryServiceUrls.getAllCategories();
-
-        LOG.debug("Retrieve all categories by using url: \"{}\"", allCategories);
         List<Category> categories = restTemplate.getForObject(allCategories, List.class);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("navbarCategories", categories);
@@ -92,14 +90,12 @@ public class RecipeController {
 
     @RequestMapping(value = "/recipe/header", method = RequestMethod.GET)
     public ModelAndView header() {
-        LOG.debug("Header requested");
         ModelAndView modelAndView = new ModelAndView("header");
         return modelAndView;
     }
 
     @RequestMapping(value = "/footer", method = RequestMethod.GET)
     public ModelAndView footer() {
-        LOG.debug("Header requested");
         ModelAndView modelAndView = new ModelAndView("footer");
         return modelAndView;
     }
