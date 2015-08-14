@@ -34,7 +34,6 @@
                                 </c:import>
                             </c:when>
                             <c:otherwise>
-                                OTHERWISE
                                 <c:import url="/main/include/${context.contextName}/${context.category.id}"/>
                             </c:otherwise>
                         </c:choose>
