@@ -11,7 +11,10 @@ $primary-color: #333;
   margin-bottom: 120px;
   @include calc(height, 100%, "-", 240px, 1000px);
 }
-
+.footer-placement.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
 .footer-placement {
   position: fixed;
   width: 100%;

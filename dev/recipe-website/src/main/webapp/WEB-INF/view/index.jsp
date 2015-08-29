@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="row header-placement">
+    <div class="header-placement row">
         <div class="col-md-3 col-lg-3">
             <c:import url="/recipe/header"/>
         </div>
@@ -22,7 +22,7 @@
         <div class="col-sm-12"><c:import url="/navbar"/></div>
     </div>
     <!-- main section -->
-    <div class="row main-placement">
+    <div class="main-placement row">
         <c:choose>
             <c:when test="${context != null}">
                 <div class="col-sm-12 col-md-12 col-lg-12">
@@ -50,7 +50,7 @@
 </div>
 
 <!-- footer section -->
-<div class="row footer-placement">
+<div class="footer-placement row">
     <div class="col-sm-12 col-md-12 col-lg-12"><c:import url="/footer"/></div>
 </div>
 </div>
